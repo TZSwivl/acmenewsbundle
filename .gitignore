@@ -50,3 +50,4 @@
 .composer
 .idea
 .vagrant
+*.log

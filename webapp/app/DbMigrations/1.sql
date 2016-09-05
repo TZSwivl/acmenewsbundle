@@ -5,4 +5,5 @@ CREATE TABLE `symfony`.`news` (
   `excerpt` VARCHAR(255) NOT NULL,
   `full_text` TEXT NOT NULL,
   PRIMARY KEY (`id`),
-  INDEX `created_published` (`created_at` ASC, `is_published` ASC));
+  INDEX `created_published` (`created_at` ASC, `is_published` ASC)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
