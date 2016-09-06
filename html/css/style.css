@@ -1,0 +1,65 @@
+/* --- Common styles --- */
+footer {
+    text-align: center;
+    border-top: 1px #dddddd solid;
+    padding-top: 33px;
+    margin-bottom: 33px;
+}
+
+/* --- News list page styles --- */
+#newsheader {
+    margin-bottom: 33px;
+}
+
+#newsheader h1, #newsheader h3 {
+    text-align: center;
+}
+
+#newsheader h3 {
+    font-weight: normal;
+}
+
+section.col-xs-9 {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px #dddddd solid;
+}
+
+.col-xs-3 time {
+    display: block;
+    text-align: right;
+}
+
+nav.listnav {
+    text-align: center;
+    margin: 33px auto;
+}
+
+/* --- News full text page styles --- */
+
+.navback {
+    margin: 22px auto 33px auto;
+}
+
+.pubtime, .excerpt {
+    margin-bottom: 20px;
+}
+
+.pubtime time {
+    font-weight: bold;
+}
+.excerpt {
+    font-style: italic;
+}
+
+article img {
+    float: left;
+    margin: auto 22px 11px auto;
+    border: 1px #dddddd solid;
+    max-width: 100%;
+    height: auto;
+}
+
+nav.newsnav {
+    margin: 33px auto;
+}

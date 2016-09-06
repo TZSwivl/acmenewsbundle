@@ -1,4 +1,14 @@
 acme_news_list:
-  path:         /news.{_format}
-  defaults:     { _controller: AcmeNewsBundle:View:list, _format: html }
-  requirements: { _format: html|xml }
+  path: /news.{_format}
+  defaults:
+    _controller: AcmeNewsBundle:View:list
+    _format: html
+  requirements:
+    _format: html|xml
+
+root:
+  path: /
+  defaults:
+    _controller: FrameworkBundle:Redirect:redirect
+    path: /news
+    permanent: true

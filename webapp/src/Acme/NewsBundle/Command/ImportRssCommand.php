@@ -84,7 +84,7 @@ class ImportRssCommand extends ContainerAwareCommand
                 $news = new News();
                 $news
                     ->setCreatedAt(\DateTime::createFromFormat('D, d M Y H:i:s O', $item->pubDate))
-                    ->setExcerpt($item->title . '. ' . $item->description)
+                    ->setExcerpt('<p>' . $item->title . '</p><p>' . $item->description . '</p>')
                     ->setIsPublished(true)
                     ->setFullText($fullText)
                 ;
