@@ -61,5 +61,25 @@ article img {
 }
 
 nav.newsnav {
-    margin: 33px auto;
+    margin: 22px auto auto auto;
+}
+
+.moreread h1 {
+    font-size: 20px;
+    margin-bottom: 22px;
+}
+
+.moreread time {
+    display: block;
+    margin-bottom: 11px;
+}
+
+.moreread article {
+    margin-bottom: 22px;
+    padding-bottom: 22px;
+    border-bottom: 1px #dddddd solid;
+}
+
+.moreread :last-child {
+    border: none;
 }

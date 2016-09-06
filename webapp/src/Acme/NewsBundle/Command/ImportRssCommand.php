@@ -75,8 +75,8 @@ class ImportRssCommand extends ContainerAwareCommand
 
                 // Заменяем пути в html (в том числе и в картинке, если пути не абсолютные - добавляем ссылку на liga.net)
                 $fullText = str_replace(
-                    ['src="/', 'href="/'],
-                    ['src="http://news.liga.net/', 'href="http://news.liga.net/'],
+                    ['src="/', 'href="/', 'width="380" height="230"'],
+                    ['src="http://news.liga.net/', 'href="http://news.liga.net/', ''],
                     $fullText
                 );
 
