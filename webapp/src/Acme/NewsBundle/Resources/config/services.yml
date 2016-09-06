@@ -1,0 +1,5 @@
+services:
+
+    acme_news_manager:
+        class: Acme\NewsBundle\Service\AcmeNewsManager
+        arguments: [ "@=service('doctrine').getRepository('AcmeNewsBundle:News')", "@memcached"]

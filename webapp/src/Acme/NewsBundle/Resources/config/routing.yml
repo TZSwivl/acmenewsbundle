@@ -1,0 +1,4 @@
+acme_news_list:
+  path:         /news.{_format}
+  defaults:     { _controller: AcmeNewsBundle:View:list, _format: html }
+  requirements: { _format: html|xml }
