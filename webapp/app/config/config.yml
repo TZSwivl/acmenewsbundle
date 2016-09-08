@@ -69,3 +69,12 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+acme_news:
+  news_per_page:          # Required
+      html:   10              # Required. Min 1, max 100
+      xml:    10              # Required. Min 1, max 100
+      in_block: 5             # Required. Min 1, max 20
+  memcached:              # If not set counts as disabled
+    enabled:      false       # default
+    service_name: 'memcached' # default

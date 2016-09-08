@@ -25,11 +25,12 @@ class ViewController extends Controller
      * @param string $_format
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function listAction(Request $request, $_format)
+    public function listAction(Request $request)
     {
         $page = $request->query->get('page', 1);
+        $format = $request->getRequestFormat();
 
-        switch ($_format) {
+        switch ($format) {
             case 'xml':
                 $newsPerPage = $this->getParameter('news_per_xml_page');
                 $template = 'view/list_xml.twig';

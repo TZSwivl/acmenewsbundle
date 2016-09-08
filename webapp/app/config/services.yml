@@ -1,7 +1,6 @@
-imports:
-  - { resource: "@AcmeNewsBundle/Resources/config/services.yml" }
+services:
 
-memcached:
-  class: Memcached
-  calls:
-    - [ addServers, [ %memcache_hosts% ] ]
+  memcached:
+    class: Memcached
+    calls:
+      - [ addServers, [ %memcache_hosts% ] ]
