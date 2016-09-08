@@ -6,6 +6,13 @@ acme_news_list:
   requirements:
     _format: html|xml
 
+acme_full_news:
+  path: /news/{pageId}
+  defaults:
+    _controller: AcmeNewsBundle:View:fullNews
+  requirements:
+    pageId: '\d+'
+
 root:
   path: /
   defaults:

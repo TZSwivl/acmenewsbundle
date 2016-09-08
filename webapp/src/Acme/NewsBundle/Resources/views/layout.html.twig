@@ -9,8 +9,8 @@
 
     {% block stylesheets %}
     <!-- link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous" -->
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
-    <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="{{ asset('bundles/acmenews/css/bootstrap.min.css') }}">
+    <link href="{{ asset('bundles/acmenews/css/style.css') }}" rel="stylesheet">
     {% endblock %}
 
     {% block javascripts_top %}
@@ -41,114 +41,17 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
+                    {% block header_navbar %}
                     <li class="active"><a href="/news">HTML list <span class="sr-only">(текущая страница)</span></a></li>
                     <li><a href="/news.xml">XML list</a></li>
+                    {% endblock %}
                 </ul>
             </div><!-- /.navbar-collapse -->
         </nav><!-- /.navbar -->
     </header>
 
-    <main class="row" aria-labelledby="newsheader">
-        <div class="col-xs-12">
-
-            <header id="newsheader">
-                <h1>Лента новостей</h1>
-                <h3>страница 2</h3>
-            </header>
-
-            <article class="row">
-                <section class="col-xs-3">
-                    <time datetime="06.09.2016 17:54">06.09.2016 17:54</time>
-                </section>
-                <section class="col-xs-9">
-                    <p>Рада разрешила проводить перерасчет выплат семьям заложников.</p>
-                    <p>Согласно закону, родственникам военнослужащих, которые захвачены в плен, или считаются без вести пропавшими, выплачивается денежное обеспечение.</p>
-                    <a href="" rel="bookmark">Читать новость полностью &raquo;</a>
-                </section>
-            </article>
-
-            <article class="row">
-                <section class="col-xs-3">
-                    <time datetime="06.09.2016 17:51">06.09.2016 17:51</time>
-                </section>
-                <section class="col-xs-9">
-                    <p>Полиция: Основная версия пожара на Интере - умышленный поджог.</p>
-                    <p>Глава ГУ Нацполиции Киева Андрей Крищенко отметил, что полиция пока никому не выдвинула подозрения по этому делу.</p>
-                    <a href="" rel="bookmark">Читать новость полностью &raquo;</a>
-                </section>
-            </article>
-
-            <article class="row">
-                <section class="col-xs-3">
-                    <time datetime="06.09.2016 17:35">06.09.2016 17:35</time>
-                </section>
-                <section class="col-xs-9">
-                    <p>General Electric купит производителей оборудования для 3D-печати.</p>
-                    <p>Американская компания намерена приобрести две компании за $1,4 млрд.</p>
-                    <a href="" rel="bookmark">Читать новость полностью &raquo;</a>
-                </section>
-            </article>
-
-            <article class="row">
-                <section class="col-xs-3">
-                    <time datetime="06.09.2016 17:29">06.09.2016 17:29</time>
-                </section>
-                <section class="col-xs-9">
-                    <p>В Одесской области офицеру дали 5 лет за отказ ехать в зону АТО. Офицер отвечал за комплектацию воинских частей, в том числе в зоне АТО.</p>
-                    <a href="" rel="bookmark">Читать новость полностью &raquo;</a>
-                </section>
-            </article>
-
-            <article class="row">
-                <section class="col-xs-3">
-                    <time datetime="06.09.2016 17:28">06.09.2016 17:28</time>
-                </section>
-                <section class="col-xs-9">
-                    <p>Украина выполнила условия для получения транша МВФ - Кубив. Первый вице-премьер сообщил, что правительство выполнило условия МВФ для получения третьего кредитного транша.</p>
-                    <a href="" rel="bookmark">Читать новость полностью &raquo;</a>
-                </section>
-            </article>
-
-        </div>
-    </main>
-
-    <aside class="row">
-        <nav class="listnav col-xs-12" aria-label="Навигация по ленте новостей">
-            <ul class="pagination">
-                <li>
-                    <a href="#" rel="first" aria-label="First page">
-                        <span aria-hidden="true">&laquo;</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" rel="prev" aria-label="Previous page">
-                        <span aria-hidden="true">&lsaquo;</span>
-                    </a>
-                </li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li class="active">
-                    <span>1 <span class="sr-only">(current)</span></span>
-                </li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li>
-                    <a href="#" rel="next" aria-label="Next page">
-                        <span aria-hidden="true">&rsaquo;</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#" rel="last" aria-label="Last page">
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </aside>
+    {% block body %}
+    {% endblock %}
 
     <footer class="row">
         <div class="col-xs-12">2016 &copy; Acme News</div>

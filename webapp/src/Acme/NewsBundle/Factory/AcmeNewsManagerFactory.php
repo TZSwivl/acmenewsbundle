@@ -10,6 +10,10 @@ use Acme\NewsBundle\Service\AcmeNewsManagerMemcachedDecorator;
 final class AcmeNewsManagerFactory
 {
     /**
+     * Фабричный метод для создания сервиса AcmeNewsManager
+     *
+     * В зависимости от настроек acme_news.memcached в конфиге возвращает или простой или кеширующий сервис
+     *
      * @param NewsRepository $newsRepository
      * @param int $perPageHtml
      * @param int $perPageXml
@@ -18,6 +22,7 @@ final class AcmeNewsManagerFactory
      * @param \Memcached|null $memcached
      *
      * @return AcmeNewsManagerInterface Acme News Manager
+     * 
      * @throws \Exception
      */
     public static function createNewsManager(
