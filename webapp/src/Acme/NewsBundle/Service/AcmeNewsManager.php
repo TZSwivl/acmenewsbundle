@@ -68,12 +68,7 @@ class AcmeNewsManager implements AcmeNewsManagerInterface
         // Resulting set
         $newsSet = [];
 
-        $countNews = $this->newsRepository
-            ->createQueryBuilder('n')
-            ->select('count(1)')
-            ->where('n.isPublished = 1')
-            ->getQuery()
-            ->getSingleScalarResult();
+        $countNews = $this->newsRepository->countPublishNews();
 
         // set of random offsets
         $randOffsets = [];
@@ -108,12 +103,7 @@ class AcmeNewsManager implements AcmeNewsManagerInterface
      */
     public function getLastPaginationPage(int $perPage): int
     {
-        $countNews = $this->newsRepository
-            ->createQueryBuilder('n')
-            ->select('count(1)')
-            ->where('n.isPublished = 1')
-            ->getQuery()
-            ->getSingleScalarResult();
+        $countNews = $this->newsRepository->countPublishNews();
 
         return $countNews ? ceil($countNews / $perPage) : 1;
     }
@@ -129,29 +119,11 @@ class AcmeNewsManager implements AcmeNewsManagerInterface
     {
         $siblings = ['prev' => false, 'next' => false];
 
-        $prevNews = $this->newsRepository
-            ->createQueryBuilder('n')
-            ->select('n.id')
-            ->where('n.id < :newsId')
-            ->andWhere('n.isPublished = 1')
-            ->orderBy('n.id DESC')
-            ->setMaxResults(1)
-            ->setParameter('newsId', $newsId)
-            ->getQuery()
-            ->getSingleScalarResult();
+        $prevNews = $this->newsRepository->getPrevNews($newsId);
 
         if($prevNews) $siblings['prev'] = $prevNews;
 
-        $nextNews = $this->newsRepository
-            ->createQueryBuilder('n')
-            ->select('n.id')
-            ->where('n.id > :newsId')
-            ->andWhere('n.isPublished = 1')
-            ->orderBy('n.id ASC')
-            ->setMaxResults(1)
-            ->setParameter('newsId', $newsId)
-            ->getQuery()
-            ->getSingleScalarResult();
+        $nextNews = $this->newsRepository->getNextNews($newsId);
 
         if($nextNews) $siblings['next'] = $nextNews;
 
