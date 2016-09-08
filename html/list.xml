@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<list
+        xmlns="http://mm.this.biz/xml"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://mm.this.biz/xml schema.xsd">
+    <item id="869869" date="06.09.2016 17:54">
+        <announce><![CDATA[Краткий текст новости]]></announce>
+        <description><![CDATA[Полный текст новости]]></description>
+    </item>
+    <item id="869369" date="06.09.2016 17:55">
+        <announce><![CDATA[Краткий текст f новости]]></announce>
+        <description><![CDATA[Полный текстdd f новости]]></description>
+    </item>
+</list>
