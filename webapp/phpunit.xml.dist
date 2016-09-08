@@ -5,11 +5,12 @@
          xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/4.8/phpunit.xsd"
          backupGlobals="false"
          colors="true"
-         bootstrap="app/autoload.php"
+         bootstrap="app/phpunit.bootstrap.php"
 >
     <php>
         <ini name="error_reporting" value="-1" />
         <server name="KERNEL_DIR" value="app/" />
+        <env name="BOOTSTRAP_PHPUNIT_RECREATE_DB" value="true" />
     </php>
 
     <testsuites>

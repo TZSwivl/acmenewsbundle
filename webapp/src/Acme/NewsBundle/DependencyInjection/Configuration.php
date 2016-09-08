@@ -15,7 +15,6 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->arrayNode('news_per_page')
-                    ->useAttributeAsKey('name')
                     ->children()
                         ->integerNode('html')
                             ->isRequired()
@@ -39,7 +38,6 @@ class Configuration implements ConfigurationInterface
                 ->end() // news_per_page
                 ->arrayNode('memcached')
                     ->canBeDisabled()
-                    ->useAttributeAsKey('name')
                     ->children()
                         ->scalarNode('service_name')->defaultValue('memcached')->end()
                     ->end()

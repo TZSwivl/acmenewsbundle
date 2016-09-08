@@ -14,3 +14,12 @@ web_profiler:
 
 swiftmailer:
     disable_delivery: true
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        host:     127.0.0.1
+        port:     null
+        dbname:   symfony_test
+        user:     dbuser
+        password: veryverystrongandlongpassword
