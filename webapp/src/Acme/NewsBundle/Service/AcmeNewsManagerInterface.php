@@ -21,4 +21,6 @@ interface AcmeNewsManagerInterface
     public function updateNews(News $news, bool $flush = true): News;
 
     public function deleteNews(News $news, bool $flush = true): bool;
+
+    public function isNewsAlreadyInDb(\SimpleXMLElement $item): bool;
 }

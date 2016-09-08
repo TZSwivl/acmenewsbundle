@@ -228,4 +228,16 @@ class AcmeNewsManagerMemcachedDecorator implements AcmeNewsManagerInterface
             $this->flagRebuildPlanned = true;
         }
     }
+
+    /**
+     * See AcmeNewsManager::isNewsAlreadyInDb()
+     *
+     * @param \SimpleXMLElement $item
+     *
+     * @return bool
+     */
+    public function isNewsAlreadyInDb(\SimpleXMLElement $item): bool
+    {
+        return $this->newsManager->isNewsAlreadyInDb($item);
+    }
 }

@@ -3,8 +3,7 @@
 namespace Acme\NewsBundle\Command;
 
 use Acme\NewsBundle\Entity\News;
-use Acme\NewsBundle\Repository\NewsRepository;
-use Doctrine\Bundle\DoctrineBundle\Registry;
+use Acme\NewsBundle\Service\AcmeNewsManagerInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
@@ -13,14 +12,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 class ImportRssCommand extends ContainerAwareCommand
 {
     /**
-     * @var ObjectManager
+     * @var AcmeNewsManagerInterface
      */
-    private $em;
-
-    /**
-     * @var NewsRepository
-     */
-    private $newsRepository;
+    private $newsManager;
 
     protected function configure()
     {
@@ -32,10 +26,7 @@ class ImportRssCommand extends ContainerAwareCommand
 
     protected function initialize(InputInterface $input, OutputInterface $output)
     {
-        /** @var Registry $doctrine */
-        $doctrine = $this->getContainer()->get('doctrine');
-        $this->em = $doctrine->getManager();
-        $this->newsRepository = $doctrine->getRepository('AcmeNewsBundle:News');
+        $this->newsManager = $this->getContainer()->get('acme_news_manager');
     }
 
     protected function execute(InputInterface $input, OutputInterface $output)
@@ -50,7 +41,7 @@ class ImportRssCommand extends ContainerAwareCommand
             // Для каждой новости
             foreach($rssXmlObj->channel->item as $item) {
                 // Проверяем по заголовку и дате, нет ли новости уже в базе
-                if($this->newsAlreadyInDb($item)) continue;
+                if($this->newsManager->isNewsAlreadyInDb($item)) continue;
 
                 // Переходим по урлу полной новости
                 if(empty((string)$item->link)) continue;
@@ -88,11 +79,8 @@ class ImportRssCommand extends ContainerAwareCommand
                     ->setIsPublished(true)
                     ->setFullText($fullText)
                 ;
-//                $output->writeln($news->getExcerpt());
-//                exit();
 
-                $this->em->persist($news);
-                $this->em->flush();
+                $this->newsManager->addNews($news);
 
                 // Выводим информацию на экран о сохранённой новости (Новость "Название" сохранена в БД. Просмотреть новость (ссылка)
                 $output->writeln([
@@ -104,22 +92,5 @@ class ImportRssCommand extends ContainerAwareCommand
         } catch (\Exception $exception) {
             echo $exception->getMessage();
         }
-    }
-
-    /**
-     * Check if news already exists in DB
-     *
-     * @param \SimpleXMLElement $item
-     * @return bool
-     */
-    private function newsAlreadyInDb(\SimpleXMLElement $item)
-    {
-        $existingNews = $this->newsRepository->findOneBy([
-            'createdAt' => \DateTime::createFromFormat('D, d M Y H:i:s O', $item->pubDate)
-        ]);
-
-        if($existingNews) return true;
-
-        return false;
     }
 }

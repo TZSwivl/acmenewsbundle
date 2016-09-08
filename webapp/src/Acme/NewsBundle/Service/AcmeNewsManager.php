@@ -202,4 +202,22 @@ class AcmeNewsManager implements AcmeNewsManagerInterface
 
         return $result;
     }
+
+    /**
+     * Check if news already exists in DB
+     *
+     * @param \SimpleXMLElement $item
+     *
+     * @return bool
+     */
+    public function isNewsAlreadyInDb(\SimpleXMLElement $item): bool
+    {
+        $existingNews = $this->newsRepository->findOneBy([
+            'createdAt' => \DateTime::createFromFormat('D, d M Y H:i:s O', $item->pubDate)
+        ]);
+
+        if($existingNews) return true;
+
+        return false;
+    }
 }
