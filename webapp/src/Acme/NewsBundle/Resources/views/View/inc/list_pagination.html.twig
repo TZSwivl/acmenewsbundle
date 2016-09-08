@@ -1,0 +1,56 @@
+<aside class="row">
+    <nav class="listnav col-xs-12" aria-label="Навигация по ленте новостей">
+        <ul class="pagination">
+
+{% if currentPage <= 1 %}
+            <li class="active">
+                <span aria-hidden="true">&laquo;</span>
+            </li>
+            <li>
+                <span aria-hidden="true">&lsaquo;</span>
+            </li>
+{% else %}
+            <li>
+                <a href="{{ path('acme_news_list') }}" rel="first" aria-label="Первая страница">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('acme_news_list', {'page': currentPage - 1}) }}" rel="prev" aria-label="Предыдущая страница">
+                    <span aria-hidden="true">&lsaquo;</span>
+                </a>
+            </li>
+{% endif %}
+
+{% for i in pagesRange %}
+{% if i is same as currentPage %}
+            <li class="active">
+                <span>{{ currentPage }} <span class="sr-only">(текущая страница)</span></span>
+            </li>
+{% else %}
+            <li><a href="{{ path('acme_news_list', {'page': i}) }}">{{ i }}</a></li>
+{% endif %}
+{% endfor %}
+
+{% if currentPage >= lastPage %}
+            <li>
+                <span aria-hidden="true">&rsaquo;</span>
+            </li>
+            <li>
+                <span aria-hidden="true">&raquo;</span>
+            </li>
+{% else %}
+            <li>
+                <a href="{{ path('acme_news_list', {'page': currentPage + 1}) }}" rel="next" aria-label="Следующая страница">
+                    <span aria-hidden="true">&rsaquo;</span>
+                </a>
+            </li>
+            <li>
+                <a href="{{ path('acme_news_list', {'page': lastPage}) }}" rel="last" aria-label="Последняя страница">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+{% endif %}
+        </ul>
+    </nav>
+</aside>

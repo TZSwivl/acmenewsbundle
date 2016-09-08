@@ -1,0 +1,35 @@
+{% extends 'AcmeNewsBundle::layout.html.twig' %}
+
+{% block title %}Новости | {% if page > 1 %}Страница {{ page }} | {% endif %}{{ parent() }}{% endblock %}
+
+{% block header_navbar %}
+    <li class="active"><a href="{{ path('acme_news_list') }}">HTML list <span class="sr-only">(текущая страница)</span></a></li>
+    <li><a href="{{ path('acme_news_list', {'_format': 'xml'}) }}">XML list</a></li>
+{% endblock %}
+
+{% block body %}
+    <main class="row" aria-labelledby="newsheader">
+        <div class="col-xs-12">
+
+            <header id="newsheader">
+                <h1>Лента новостей</h1>
+                <h3>страница 2</h3>
+            </header>
+
+{% for news in newsEntitySet %}
+            <article class="row">
+                <section class="col-xs-3">
+                    <time datetime="{{ news.createdAt|date('d.m.Y H:i') }}">{{ news.createdAt|date('d.m.Y H:i') }}</time>
+                </section>
+                <section class="col-xs-9">
+                    {{ news.excerpt }}
+                    <a href="{{ path('acme_full_news', {'newsId': news.id}) }}" rel="bookmark">Читать новость полностью &raquo;</a>
+                </section>
+            </article>
+
+{% endfor %}
+        </div>
+    </main>
+
+    {{ render(controller('AcmeNewsBundle:View:listPagination', {'page': page, 'perPage': perPage})) }}
+{% endblock %}

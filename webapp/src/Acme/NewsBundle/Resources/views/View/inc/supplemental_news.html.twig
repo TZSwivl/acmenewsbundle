@@ -1,0 +1,11 @@
+<section class="moreread col-xs-10 col-xs-offset-1" aria-labelledby="moreh1">
+    <h1 id="moreh1">Еще почитать:</h1>
+{% for news if newsSet %}
+    <article>
+        <time datetime="{{ news.createdAt|date('d.m.Y H:i') }}">{{ news.createdAt|date('d.m.Y H:i') }}</time>
+        {{ news.excerpt }}
+        <a href="{{ path('acme_full_news', {'newsId': news.id}) }}" rel="bookmark">Читать новость полностью &raquo;</a>
+    </article>
+
+{% endfor %}
+</section>
