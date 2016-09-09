@@ -4,11 +4,7 @@
 
 {% block header_navbar %}
     <li class="active"><a href="{{ path('acme_news_list') }}">HTML list <span class="sr-only">(текущая страница)</span></a></li>
-{% if page > 1 %}
-    <li><a href="{{ path('acme_news_list', {'_format': 'xml', 'page': page}) }}">XML list</a></li>
-{% else %}
     <li><a href="{{ path('acme_news_list', {'_format': 'xml'}) }}">XML list</a></li>
-{% endif %}
 {% endblock %}
 
 {% block body %}
