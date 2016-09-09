@@ -71,7 +71,7 @@ Vagrant.configure("2") do |config|
   	DBUSER=dbuser
   	DBPASSWORD=veryverystrongandlongpassword
   	DBNAME=symfony
-  	DOMAIN=tzswivl.thiz.biz
+  	DOMAIN=tzswivl.com
   	
   	# Preconfigure mysql root password
   	echo -e "\n--- Preconfigure mysql root password ---\n"
@@ -82,13 +82,15 @@ Vagrant.configure("2") do |config|
   	echo -e "\n--- Apt-get update ---\n"
   	apt-get update
   	echo -e "\n--- Install unzip, php, nginx, mysql-client, mysql-server ---\n"
-  	apt-get install --assume-yes unzip nginx mysql-client mysql-server php php7.0-xml php7.0-intl php7.0-mysql phpunit
+  	apt-get install --assume-yes unzip nginx memcached mysql-client mysql-server php php7.0-xml php7.0-intl php7.0-mysql php-memcached
 
   	# DB installation tuning
   	echo -e "\n--- DB installation tuning ---\n"
   	mysql -uroot -p$DBPASSWORD -e "CREATE DATABASE $DBNAME"
   	mysql -uroot -p$DBPASSWORD -e "grant all privileges on $DBNAME.* to '$DBUSER'@'localhost' identified by '$DBPASSWORD'"
-  	
+  	mysql -uroot -p$DBPASSWORD -e "CREATE DATABASE $DBNAME_test"
+  	mysql -uroot -p$DBPASSWORD -e "grant all privileges on $DBNAME_test.* to '$DBUSER'@'localhost' identified by '$DBPASSWORD'"
+
   	cd www
 
   	# Composer installation
