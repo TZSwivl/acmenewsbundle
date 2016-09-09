@@ -10,16 +10,6 @@ use Symfony\Component\HttpFoundation\Response;
 class ViewController extends Controller
 {
     /**
-     * @var AcmeNewsManager
-     */
-    private $newsManager;
-
-    public function __construct()
-    {
-        $this->newsManager = $this->get('acme_news_manager');
-    }
-
-    /**
      * Displays a news listing page
      *
      * @param Request $request
@@ -43,7 +33,7 @@ class ViewController extends Controller
         }
 
         // Получаем из сервиса новости с указанной страницей
-        $newsEntitySet = $this->newsManager->getNewsForListing($page, $newsPerPage);
+        $newsEntitySet = $this->getNewsManager()->getNewsForListing($page, $newsPerPage);
 
         // В зависимости от запрошенного формата страницы рендерим темплейт нужного формата (html | xml)
         return $this->render(
@@ -65,12 +55,12 @@ class ViewController extends Controller
      */
     public function fullNewsAction(int $newsId): Response
     {
-        $news = $this->newsManager->getOneNews($newsId);
+        $news = $this->getNewsManager()->getOneNews($newsId);
 
-        if(!$news) $this->createNotFoundException();
+        if(!$news) throw $this->createNotFoundException();
 
         // Id's for prev & next pages
-        $siblings = $this->newsManager->getNewsSiblings($newsId);
+        $siblings = $this->getNewsManager()->getNewsSiblings($newsId);
 
         return $this->render(
             'AcmeNewsBundle:View:full_news.html.twig',
@@ -93,15 +83,15 @@ class ViewController extends Controller
     public function listPaginationAction(int $page, int $perPage): Response
     {
         $currentPage = $page;
-        $paginationTail = 3; // tail of pagination set in both sides
-        $lastPage = $this->newsManager->getLastPaginationPage($perPage);
+        $lastPage = $this->getNewsManager()->getLastPaginationPage($perPage);
+        $paginationTail = min(3, floor($lastPage/2)); // tail of pagination set in both sides
 
         // Calculate correct range of pagination page indexes
-        if($currentPage < 1 + $paginationTail) {
+        if($currentPage <= ($paginationTail + 1)) {
             $rangeFirst = 1;
-            $rangeLast = 7;
-        } elseif ($currentPage > $lastPage - $paginationTail) {
-            $rangeFirst = $lastPage - 7;
+            $rangeLast = min($lastPage, $paginationTail * 2 + 1);
+        } elseif ($currentPage > $lastPage - ($paginationTail + 1)) {
+            $rangeFirst = $lastPage - ($paginationTail * 2);
             $rangeLast = $lastPage;
         } else {
             $rangeFirst = $currentPage - $paginationTail;
@@ -125,13 +115,13 @@ class ViewController extends Controller
      *
      * @param int $newsId Current news
      *
-     * @return array
+     * @return Response
      */
-    public function supplementalNewsAction(int $newsId): array
+    public function supplementalNewsAction(int $newsId): Response
     {
-        $newsSet = $this->newsManager->getSupplementalNews(
+        $newsSet = $this->getNewsManager()->getSupplementalNews(
             $newsId,
-            $this->getParameter('acme_news.news_per_page.in_block', 5)
+            $this->getParameter('acme_news.news_per_page.in_block')
         );
 
         return $this->render(
@@ -140,5 +130,10 @@ class ViewController extends Controller
                 'newsSet' => $newsSet
             ]
         );
+    }
+
+    private function getNewsManager(): AcmeNewsManager
+    {
+        return $this->get('acme_news_manager');
     }
 }

@@ -6,16 +6,16 @@ acme_news_list:
   requirements:
     _format: html|xml
 
-acme_full_news:
-  path: /news/{pageId}
+acme_news_full_news:
+  path: /news/{newsId}
   defaults:
     _controller: AcmeNewsBundle:View:fullNews
   requirements:
-    pageId: '\d+'
+    newsId: '\d+'
 
-root:
+acme_news_root:
   path: /
   defaults:
     _controller: FrameworkBundle:Redirect:redirect
-    path: /news
+    route: acme_news_list
     permanent: true

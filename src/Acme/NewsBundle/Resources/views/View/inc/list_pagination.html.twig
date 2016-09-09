@@ -3,7 +3,7 @@
         <ul class="pagination">
 
 {% if currentPage <= 1 %}
-            <li class="active">
+            <li>
                 <span aria-hidden="true">&laquo;</span>
             </li>
             <li>
@@ -23,7 +23,7 @@
 {% endif %}
 
 {% for i in pagesRange %}
-{% if i is same as currentPage %}
+{% if i == currentPage %}
             <li class="active">
                 <span>{{ currentPage }} <span class="sr-only">(текущая страница)</span></span>
             </li>

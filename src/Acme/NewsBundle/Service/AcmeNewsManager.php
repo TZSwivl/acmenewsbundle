@@ -46,7 +46,7 @@ class AcmeNewsManager implements AcmeNewsManagerInterface
      *
      * @return News
      */
-    public function getOneNews(int $newsId): News
+    public function getOneNews(int $newsId)
     {
         /** @var News $news */
         $news = $this->newsRepository->find($newsId);

@@ -19,10 +19,10 @@
             <time datetime="{{ news.createdAt|date('d.m.Y H:i') }}">{{ news.createdAt|date('d.m.Y H:i') }}</time>
         </section>
         <section class="excerpt col-xs-10 col-xs-offset-1">
-            {{ news.excerpt }}
+            {{ news.excerpt|raw }}
         </section>
         <section class="col-xs-10 col-xs-offset-1">
-            {{ news.fullText }}
+            {{ news.fullText|raw }}
         </section>
     </article>
 
@@ -31,20 +31,20 @@
             <ul class="pager">
 
             {% if prevId %}
-                <li class="previous"><a href="{{ path('acme_full_news', {'pageId': prevId}) }}" rel="prev"><span aria-hidden="true">&larr;</span> Предыдущая новость</a></li>
+                <li class="previous"><a href="{{ path('acme_news_full_news', {'newsId': prevId}) }}" rel="next"><span aria-hidden="true">&larr;</span> Следующая новость</a></li>
             {% else %}
-                <li class="previous disabled"><a href="#" rel="prev"><span aria-hidden="true">&larr;</span> Предыдущая новость</a></li>
+                <li class="previous disabled"><a href="#" rel="next"><span aria-hidden="true">&larr;</span> Следующая новость</a></li>
             {% endif %}
 
             {% if nextId %}
-                <li class="next"><a href="{{ path('acme_full_news', {'pageId': nextId}) }}" rel="next">Следующая новость <span aria-hidden="true">&rarr;</span></a></li>
+                <li class="next"><a href="{{ path('acme_news_full_news', {'newsId': nextId}) }}" rel="prev">Предыдущая новость <span aria-hidden="true">&rarr;</span></a></li>
             {% else %}
-                <li class="next disabled"><a href="#" rel="next">Следующая новость <span aria-hidden="true">&rarr;</span></a></li>
+                <li class="next disabled"><a href="#" rel="prev">Предыдущая новость <span aria-hidden="true">&rarr;</span></a></li>
             {% endif %}
 
             </ul>
         </nav>
 
-        {{ render(controller('AcmeNewsBundle:View:listPagination', {'page': page, 'perPage': perPage})) }}
+        {{ render(controller('AcmeNewsBundle:View:supplementalNews', {'newsId': news.id})) }}
     </aside>
 {% endblock %}

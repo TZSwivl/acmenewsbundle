@@ -13,7 +13,7 @@
 
             <header id="newsheader">
                 <h1>Лента новостей</h1>
-                <h3>страница 2</h3>
+                <h3>страница {{ page }}</h3>
             </header>
 
 {% for news in newsEntitySet %}
@@ -22,8 +22,8 @@
                     <time datetime="{{ news.createdAt|date('d.m.Y H:i') }}">{{ news.createdAt|date('d.m.Y H:i') }}</time>
                 </section>
                 <section class="col-xs-9">
-                    {{ news.excerpt }}
-                    <a href="{{ path('acme_full_news', {'newsId': news.id}) }}" rel="bookmark">Читать новость полностью &raquo;</a>
+                    {{ news.excerpt|raw }}
+                    <a href="{{ path('acme_news_full_news', {'newsId': news.id}) }}" rel="bookmark">Читать новость полностью &raquo;</a>
                 </section>
             </article>
 

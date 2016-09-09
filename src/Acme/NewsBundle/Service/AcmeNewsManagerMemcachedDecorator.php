@@ -71,7 +71,7 @@ class AcmeNewsManagerMemcachedDecorator implements AcmeNewsManagerInterface
      *
      * @return News
      */
-    public function getOneNews(int $newsId, $flushMC  = false): News
+    public function getOneNews(int $newsId, $flushMC  = false)
     {
         $mkey = self::CACHE_KEY_ONE_NEWS . $newsId;
         $news = $this->memcached->get($mkey);

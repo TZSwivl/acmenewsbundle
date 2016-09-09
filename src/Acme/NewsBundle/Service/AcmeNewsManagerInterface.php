@@ -8,7 +8,7 @@ interface AcmeNewsManagerInterface
 {
     public function getNewsForListing(int $page, int $perPage): array;
 
-    public function getOneNews(int $newsId): News;
+    public function getOneNews(int $newsId);
 
     public function getSupplementalNews(int $newsId, int $perBlock): array;
 

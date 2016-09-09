@@ -1,6 +1,6 @@
 server {
     server_name theredomainname www.theredomainname;
-    root /home/ubuntu/www/webapp/web;
+    root /home/ubuntu/www/web;
 
     location / {
         # try to serve file directly, fallback to app.php

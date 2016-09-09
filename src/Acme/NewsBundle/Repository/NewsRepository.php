@@ -31,7 +31,7 @@ class NewsRepository extends EntityRepository
      */
     public function getPrevNews(int $newsId): int
     {
-        return $this
+        $r = $this
             ->createQueryBuilder('n')
             ->select('n.id')
             ->where('n.id < :newsId')
@@ -40,7 +40,11 @@ class NewsRepository extends EntityRepository
             ->setMaxResults(1)
             ->setParameter('newsId', $newsId)
             ->getQuery()
-            ->getSingleScalarResult();
+            ->getOneOrNullResult();
+
+        if(!is_null($r)) return $r['id'];
+
+        return 0;
     }
 
     /**
@@ -52,7 +56,7 @@ class NewsRepository extends EntityRepository
      */
     public function getNextNews(int $newsId): int
     {
-        return $this
+        $r = $this
             ->createQueryBuilder('n')
             ->select('n.id')
             ->where('n.id > :newsId')
@@ -61,7 +65,11 @@ class NewsRepository extends EntityRepository
             ->setMaxResults(1)
             ->setParameter('newsId', $newsId)
             ->getQuery()
-            ->getSingleScalarResult();
+            ->getOneOrNullResult();
+
+        if(!is_null($r)) return $r['id'];
+
+        return 0;
     }
 
     /**
