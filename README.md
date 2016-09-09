@@ -87,14 +87,15 @@ mysql -u dbuser -pveryverystrongandlongpassword symfony < /home/ubuntu/www/app/D
 * memcached
 * unzip
 
+####Порядок установки
 * В root папке вашего сервера выполнить
 ```
 git clone https://github.com/TZSwivl/acmenewsbundle.git .
 ```
-* Создать пустые базы данных symfony, symfony_test
+* Создать пустые базы данных symfony, symfony_test и пользователя со всеми привелегиями в этих базах.
 * Залить в них дампы 1.sql и 2.sql из папки app/DbMigrations
     
-Настройка
+Настройка приложения
 --------------
 1. Если создавали БД и пользователей вручую (а не доверили это Vagrant'у) - нужно прописать эти данные  в файлах конфигурации app/config/parameters.yml и app/config/config_test.yml  
 2. В разделе acme_news в файле конфигурации app/config/config.php можно исправить настройки бандла AcmeNewsBundle, заданные по умолчанию, если они вас не устраивают.
