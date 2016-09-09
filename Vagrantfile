@@ -71,7 +71,7 @@ Vagrant.configure("2") do |config|
   	DBUSER=dbuser
   	DBPASSWORD=veryverystrongandlongpassword
   	DBNAME=symfony
-  	DOMAIN=tzswivl.com
+  	DOMAIN=tzswivl.thiz.biz
   	
   	# Preconfigure mysql root password
   	echo -e "\n--- Preconfigure mysql root password ---\n"

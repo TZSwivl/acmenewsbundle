@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<list xmlns="http://tzswivl.com/xml"
+<list xmlns="http://tzswivl.this.biz/xml"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xsi:noNamespaceSchemaLocation="http://tzswivl.com/xml schema.xsd">
+      xsi:schemaLocation="http://tzswivl.this.biz/xml schema.xsd">
 {% for news in newsEntitySet %}
     <item id="{{ news.id }}" date="{{ news.createdAt|date('d.m.Y H:i') }}">
         <announce><![CDATA[{{ news.excerpt }}]]></announce>
