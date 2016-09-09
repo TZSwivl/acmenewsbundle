@@ -19,7 +19,7 @@
 {% for news in newsEntitySet %}
             <article class="row">
                 <h2 class="col-xs-3">
-                    <time datetime="{{ news.createdAt|date('Y-m-d H:i:s') }}">{{ news.createdAt|date('Y-m-d H:i:s') }}</time>
+                    <time datetime="{{ news.createdAt|date('Y-m-d H:i:s') }}">{{ news.createdAt|date('d.m.Y H:i') }}</time>
                 </h2>
                 <div class="col-xs-9">
                     {{ news.excerpt|raw }}

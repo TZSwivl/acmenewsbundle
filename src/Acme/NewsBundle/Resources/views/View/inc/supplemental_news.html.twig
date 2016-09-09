@@ -2,7 +2,7 @@
     <h2 id="moreh2">Еще почитать:</h2>
 {% for news in newsSet %}
     <article>
-        <time datetime="{{ news.createdAt|date('Y-m-d H:i:s') }}">{{ news.createdAt|date('Y-m-d H:i:s') }}</time>
+        <time datetime="{{ news.createdAt|date('Y-m-d H:i:s') }}">{{ news.createdAt|date('d.m.Y H:i') }}</time>
         {{ news.excerpt|raw }}
         <a href="{{ path('acme_news_full_news', {'newsId': news.id}) }}" rel="bookmark">Читать новость полностью &raquo;</a>
     </article>
