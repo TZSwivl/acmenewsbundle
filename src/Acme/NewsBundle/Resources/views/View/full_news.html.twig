@@ -1,6 +1,6 @@
 {% extends 'AcmeNewsBundle::layout.html.twig' %}
 
-{% block title %}{{ news.createdAt|date('d.m.Y H:i') }} | Новости | {{ parent() }}{% endblock %}
+{% block title %}{{ news.createdAt|date('Y-m-d H:i:s') }} | Новости | {{ parent() }}{% endblock %}
 
 {% block header_navbar %}
     <li><a href="{{ path('acme_news_list') }}">HTML list</a></li>
@@ -15,9 +15,9 @@
     </div>
 
     <article role="main" class="row">
-        <section class="pubtime col-xs-10 col-xs-offset-1">
-            <time datetime="{{ news.createdAt|date('d.m.Y H:i') }}">{{ news.createdAt|date('d.m.Y H:i') }}</time>
-        </section>
+        <h1 class="pubtime col-xs-10 col-xs-offset-1">2011-11-18 14:54:39
+            <time datetime="{{ news.createdAt|date('Y-m-d H:i:s') }}">{{ news.createdAt|date('Y-m-d H:i:s') }}</time>
+        </h1>
         <section class="excerpt col-xs-10 col-xs-offset-1">
             {{ news.excerpt|raw }}
         </section>

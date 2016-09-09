@@ -5,8 +5,8 @@ parameters:
     database_host:     127.0.0.1
     database_port:     ~
     database_name:     symfony
-    database_user:     root
-    database_password: ~
+    database_user:     dbuser
+    database_password: veryverystrongandlongpassword
     charset:  utf8mb4
     default_table_options:
         charset: utf8mb4
@@ -20,7 +20,7 @@ parameters:
     mailer_password:   ~
 
     # A secret key that's used to generate certain security-related tokens
-    secret:            ThisTokenIsNotSoSecretChangeIt
+    secret:            ThisTokenIsveryverystrongandlongpasswordNotSoSecretChangeIt
 
     memcache_hosts:
         -

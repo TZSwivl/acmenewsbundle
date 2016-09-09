@@ -3,7 +3,7 @@
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://swivl.this.biz/xml schema.xsd">
 {% for news in newsEntitySet %}
-    <item id="{{ news.id }}" date="{{ news.createdAt|date('d.m.Y H:i') }}">
+    <item id="{{ news.id }}" date="{{ news.createdAt|date('Y-m-d H:i:s') }}">
         <announce><![CDATA[{{ news.excerpt }}]]></announce>
         <description><![CDATA[{{ news.fullText }}]]></description>
     </item>
