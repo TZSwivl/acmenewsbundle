@@ -5,8 +5,5 @@ services:
         factory: [ 'Acme\NewsBundle\Factory\AcmeNewsManagerFactory', createNewsManager ]
         arguments:
           - "@=service('doctrine').getRepository('AcmeNewsBundle:News')"
-          - "%acme_news.news_per_page.html%"
-          - "%acme_news.news_per_page.xml%"
-          - "%acme_news.news_per_page.in_block%"
           - "%acme_news.memcached.enabled%"
           - "@=container.has(parameter('acme_news.memcached.service_name')) ? service(parameter('acme_news.memcached.service_name')) : null"

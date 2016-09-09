@@ -15,9 +15,6 @@ final class AcmeNewsManagerFactory
      * В зависимости от настроек acme_news.memcached в конфиге возвращает или простой или кеширующий сервис
      *
      * @param NewsRepository $newsRepository
-     * @param int $perPageHtml
-     * @param int $perPageXml
-     * @param int $perPageInBlock
      * @param bool $memcacheEnabled
      * @param \Memcached|null $memcached
      *
@@ -27,19 +24,13 @@ final class AcmeNewsManagerFactory
      */
     public static function createNewsManager(
         NewsRepository $newsRepository,
-        int $perPageHtml,
-        int $perPageXml,
-        int $perPageInBlock,
         bool $memcacheEnabled,
         \Memcached $memcached = null
     )
     {
         // Создаем NewsManager с основным функционалом
         $newsManager = new AcmeNewsManager(
-            $newsRepository,
-            $perPageHtml,
-            $perPageXml,
-            $perPageInBlock
+            $newsRepository
         );
 
         // Если в настройках бандла включен memcached, добавляем кеширование
