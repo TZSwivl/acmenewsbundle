@@ -75,12 +75,16 @@ git clone https://github.com/TZSwivl/acmenewsbundle.git .
 ```
 vagrant up
 ```
-* Зайти в консоль виртуальной машины и залить дампы в уже созданные Vagrant'ом mysql базы данных:
+* Зайти в консоль виртуальной машины и
+  * залить дампы в уже созданные Vagrant'ом mysql базы данных
+  * загрузить зависимости проекта composer'ом
 ```
 # Для sss пароля не потребуется
 vagrant ssh
+cd www
 mysql -u dbuser -pveryverystrongandlongpassword symfony < /home/ubuntu/www/app/DbMigrations/1.sql 
 mysql -u dbuser -pveryverystrongandlongpassword symfony < /home/ubuntu/www/app/DbMigrations/2.sql 
+php composer.phar install
 ```
 После выполнения указанных действий сайт должен быть доступен в браузере по адресу http://tzswivl.com/.
 
@@ -97,6 +101,7 @@ mysql -u dbuser -pveryverystrongandlongpassword symfony < /home/ubuntu/www/app/D
 * В root папке вашего веб-сервера выполнить
 ```
 git clone https://github.com/TZSwivl/acmenewsbundle.git .
+php composer.phar install
 ```
 * Создать пустые базы данных symfony, symfony_test и пользователя со всеми привелегиями в этих базах.
 * Залить в них дампы 1.sql и 2.sql из папки app/DbMigrations
