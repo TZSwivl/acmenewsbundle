@@ -10,7 +10,9 @@ class AcmeNewsManagerTest extends \PHPUnit_Framework_TestCase
 {
     public function testGetLastPaginationPage()
     {
-        $newsRepo = $this->createMock(NewsRepository::class)
+        $newsRepo = $this->createMock(NewsRepository::class);
+        $newsRepo
+            ->expects($this->once())
             ->method('countPublishedNews')
             ->willReturn(47);
 
@@ -25,9 +27,13 @@ class AcmeNewsManagerTest extends \PHPUnit_Framework_TestCase
 
     public function testGetNewsSiblings()
     {
-        $newsRepo = $this->createMock(NewsRepository::class)
+        $newsRepo = $this->createMock(NewsRepository::class);
+        $newsRepo
+            ->expects($this->once())
             ->method('getPrevNews')
-            ->willReturn(37)
+            ->willReturn(37);
+        $newsRepo
+            ->expects($this->once())
             ->method('getNextNews')
             ->willReturn(42);
 

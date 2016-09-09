@@ -14,7 +14,9 @@
     </php>
 
     <testsuites>
-        <testsuite name="Project Test Suite">
+        <testsuite name="Acme News app Test Suite">
+            <directory>src/*/*/Tests/</directory>
+            <directory>src/*/Tests/</directory>
             <directory>tests</directory>
         </testsuite>
     </testsuites>

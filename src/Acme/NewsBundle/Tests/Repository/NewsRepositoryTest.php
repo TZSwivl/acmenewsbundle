@@ -43,7 +43,7 @@ class NewsRepositoryTest extends KernelTestCase
 
     public function testCountPublishedNews()
     {
-        $expected = 1;
+        $expected = 31;
         $actual = self::$newsRepo->countPublishedNews();
 
         $this->assertEquals($expected, $actual);
@@ -52,9 +52,9 @@ class NewsRepositoryTest extends KernelTestCase
     public function testGetPrevNews()
     {
         $expectedData = [
-            [1, 0],
+            [2, 1],
             [5, 4],
-            [4, 3],
+            [14, 13],
             [19, 17],
             [21, 20],
         ];
@@ -70,11 +70,11 @@ class NewsRepositoryTest extends KernelTestCase
     public function testGetNextNews()
     {
         $expectedData = [
-            [1, 0],
-            [5, 4],
-            [4, 3],
-            [19, 17],
-            [21, 20],
+            [1, 2],
+            [5, 6],
+            [4, 5],
+            [17, 19],
+            [21, 22],
         ];
 
         foreach($expectedData as $set) {
