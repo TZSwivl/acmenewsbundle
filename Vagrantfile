@@ -71,6 +71,7 @@ Vagrant.configure("2") do |config|
   	DBUSER=dbuser
   	DBPASSWORD=veryverystrongandlongpassword
   	DBNAME=symfony
+  	DBNAMETEST=symfony_test
   	DOMAIN=tzswivl.com
   	
   	# Preconfigure mysql root password
@@ -88,8 +89,8 @@ Vagrant.configure("2") do |config|
   	echo -e "\n--- DB installation tuning ---\n"
   	mysql -uroot -p$DBPASSWORD -e "CREATE DATABASE $DBNAME"
   	mysql -uroot -p$DBPASSWORD -e "grant all privileges on $DBNAME.* to '$DBUSER'@'localhost' identified by '$DBPASSWORD'"
-  	mysql -uroot -p$DBPASSWORD -e "CREATE DATABASE $DBNAME_test"
-  	mysql -uroot -p$DBPASSWORD -e "grant all privileges on $DBNAME_test.* to '$DBUSER'@'localhost' identified by '$DBPASSWORD'"
+  	mysql -uroot -p$DBPASSWORD -e "CREATE DATABASE $DBNAMETEST"
+  	mysql -uroot -p$DBPASSWORD -e "grant all privileges on $DBNAMETEST.* to '$DBUSER'@'localhost' identified by '$DBPASSWORD'"
 
   	cd www
 
