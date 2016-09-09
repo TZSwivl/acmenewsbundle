@@ -91,7 +91,7 @@ class ViewController extends Controller
             $rangeFirst = 1;
             $rangeLast = min($lastPage, $paginationTail * 2 + 1);
         } elseif ($currentPage > $lastPage - ($paginationTail + 1)) {
-            $rangeFirst = $lastPage - max(1, ($paginationTail * 2));
+            $rangeFirst = max(1, $lastPage - ($paginationTail * 2));
             $rangeLast = $lastPage;
         } else {
             $rangeFirst = $currentPage - $paginationTail;
