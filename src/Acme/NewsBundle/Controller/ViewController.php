@@ -2,7 +2,7 @@
 
 namespace Acme\NewsBundle\Controller;
 
-use Acme\NewsBundle\Service\AcmeNewsManager;
+use Acme\NewsBundle\Service\AcmeNewsManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -132,7 +132,7 @@ class ViewController extends Controller
         );
     }
 
-    private function getNewsManager(): AcmeNewsManager
+    private function getNewsManager(): AcmeNewsManagerInterface
     {
         return $this->get('acme_news_manager');
     }
