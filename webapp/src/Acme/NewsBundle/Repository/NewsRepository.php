@@ -7,7 +7,12 @@ use Doctrine\ORM\EntityRepository;
 
 class NewsRepository extends EntityRepository
 {
-    public function countPublishNews(): int
+    /**
+     * Возвращает кол-во опубликованных новостей в БД
+     *
+     * @return int
+     */
+    public function countPublishedNews(): int
     {
         return $this
             ->createQueryBuilder('n')
@@ -17,6 +22,13 @@ class NewsRepository extends EntityRepository
             ->getSingleScalarResult();
     }
 
+    /**
+     * Возвращает ID предыдущей доступной новости
+     *
+     * @param int $newsId
+     *
+     * @return int
+     */
     public function getPrevNews(int $newsId): int
     {
         return $this
@@ -31,6 +43,13 @@ class NewsRepository extends EntityRepository
             ->getSingleScalarResult();
     }
 
+    /**
+     * Возвращает ID следующей доступной новости
+     *
+     * @param int $newsId
+
+     * @return int
+     */
     public function getNextNews(int $newsId): int
     {
         return $this
@@ -45,6 +64,14 @@ class NewsRepository extends EntityRepository
             ->getSingleScalarResult();
     }
 
+    /**
+     * Добавляет новость в БД
+     *
+     * @param News $news
+     * @param bool $flush
+     *
+     * @return News
+     */
     public function addNews(News $news, bool $flush = true): News
     {
         $em = $this->getEntityManager();
@@ -55,6 +82,14 @@ class NewsRepository extends EntityRepository
         return $news;
     }
 
+    /**
+     * Обновляет новость из БД
+     *
+     * @param News $news
+     * @param bool $flush
+     *
+     * @return News
+     */
     public function updateNews(News $news, bool $flush = true): News
     {
         $em = $this->getEntityManager();
@@ -64,6 +99,14 @@ class NewsRepository extends EntityRepository
         return $news;
     }
 
+    /**
+     * Удаляет новость из БД
+     *
+     * @param News $news
+     * @param bool $flush
+     *
+     * @return bool
+     */
     public function deleteNews(News $news, bool $flush = true)
     {
         $em = $this->getEntityManager();

@@ -68,7 +68,7 @@ class AcmeNewsManager implements AcmeNewsManagerInterface
         // Resulting set
         $newsSet = [];
 
-        $countNews = $this->newsRepository->countPublishNews();
+        $countNews = $this->newsRepository->countPublishedNews();
 
         // set of random offsets
         $randOffsets = [];
@@ -77,7 +77,7 @@ class AcmeNewsManager implements AcmeNewsManagerInterface
             $randOffsets[] = mt_rand(1, $countNews);
         }
 
-        // get random news based on random offsets in table
+        // get one random news based on random offsets in table
         foreach($randOffsets as $offset) {
             $result = $this->newsRepository->findBy(
                 ['isPublished' => true],
@@ -103,7 +103,7 @@ class AcmeNewsManager implements AcmeNewsManagerInterface
      */
     public function getLastPaginationPage(int $perPage): int
     {
-        $countNews = $this->newsRepository->countPublishNews();
+        $countNews = $this->newsRepository->countPublishedNews();
 
         return $countNews ? ceil($countNews / $perPage) : 1;
     }
