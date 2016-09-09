@@ -48,6 +48,7 @@
 */Entity/*~
 
 .composer
+composer.lock
 .idea
 .vagrant
 *.log
