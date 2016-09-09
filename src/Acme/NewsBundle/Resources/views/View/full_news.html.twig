@@ -1,6 +1,6 @@
 {% extends 'AcmeNewsBundle::layout.html.twig' %}
 
-{% block title %}News date | Новости | {{ parent() }}{% endblock %}
+{% block title %}{{ news.createdAt|date('d.m.Y H:i') }} | Новости | {{ parent() }}{% endblock %}
 
 {% block header_navbar %}
     <li><a href="{{ path('acme_news_list') }}">HTML list</a></li>
