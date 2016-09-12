@@ -4,8 +4,8 @@
       xsi:schemaLocation="http://swivl.this.biz/xml schema.xsd">
 {% for news in newsEntitySet %}
     <item id="{{ news.id }}" date="{{ news.createdAt|date('Y-m-d H:i:s') }}">
-        <announce><![CDATA[{{ news.excerpt }}]]></announce>
-        <description><![CDATA[{{ news.fullText }}]]></description>
+        <announce><![CDATA[{{ news.excerpt|raw }}]]></announce>
+        <description><![CDATA[{{ news.fullText|raw }}]]></description>
     </item>
 {% endfor %}
 </list>
